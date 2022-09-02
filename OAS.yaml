@@ -1389,22 +1389,9 @@ components:
           minLength: 1
           readOnly: true
         vorigContactmoment:
-          title: Vorig contactmoment
-          description: URL-referentie naar het vorige CONTACTMOMENT.
-          type: string
-          format: uri
-          maxLength: 1000
-          minLength: 1
-          nullable: true
+          $ref: '#/components/schemas/ContactMoment'
         volgendContactmoment:
-          title: Volgend contactmoment
-          description: URL-referentie naar het volgende CONTACTMOMENT.
-          type: string
-          format: uri
-          maxLength: 1000
-          minLength: 1
-          nullable: true
-          readOnly: true
+          $ref: '#/components/schemas/ContactMoment'
         bronorganisatie:
           title: Bronorganisatie
           description: 'Het RSIN van de Niet-natuurlijk persoon zijnde de organisatie die de klantinteractie heeft gecreeerd. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef'
@@ -1769,6 +1756,7 @@ components:
         - contactmoment
         - klant
         - rol
+      x-context: schema.conduction.nl/klantcontactmoment
     ObjectContactMoment:
       type: object
       properties:
@@ -1803,3 +1791,4 @@ components:
         - contactmoment
         - object
         - objectType
+      x-context: schema.conduction.nl/objectcontactmoment
