@@ -1469,10 +1469,6 @@ components:
         afwijkendOnderwerp:
           type: string
           maxLength: 2555
-        klantcontactmomenten:
-          type: array
-          items:
-            $ref: '#/components/schemas/KlantContactMoment'
       required:
         - bronorganisatie
     Fout:
