@@ -1469,6 +1469,17 @@ components:
         afwijkendOnderwerp:
           type: string
           maxLength: 2555
+        klantcontactmomenten:
+          type: array
+          items:
+            $ref: '#/components/schemas/KlantContactMoment'
+        primaireVraag:
+          type: string
+        primaireVraagWeergave:
+          type: string
+        todo:
+          type: string
+          description: ref to agendaservice todo
       required:
         - bronorganisatie
     Fout:
@@ -1715,6 +1726,7 @@ components:
           $ref: '#/components/schemas/Wijzigingen'
     KlantContactMoment:
       type: object
+      x-context: schema.conduction.nl/klantcontactmoment
       properties:
         url:
           title: Url
@@ -1743,16 +1755,10 @@ components:
             - gesprekspartner
         gesprek:
           type: string
-        todo:
-          x-context: schema.conduction.nl/todo
-          type: string
-          format: uri
-          description: uri to agendaservice todo
       required:
         - contactmoment
         - klant
         - rol
-      x-context: schema.conduction.nl/klantcontactmoment
     ObjectContactMoment:
       type: object
       properties:
