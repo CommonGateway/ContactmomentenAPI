@@ -1387,22 +1387,9 @@ components:
           minLength: 1
           readOnly: true
         vorigContactmoment:
-          title: Vorig contactmoment
-          description: URL-referentie naar het vorige CONTACTMOMENT.
-          type: string
-          format: uri
-          maxLength: 1000
-          minLength: 1
-          nullable: true
+          $ref: '#/components/schemas/ContactMoment'
         volgendContactmoment:
-          title: Volgend contactmoment
-          description: URL-referentie naar het volgende CONTACTMOMENT.
-          type: string
-          format: uri
-          maxLength: 1000
-          minLength: 1
-          nullable: true
-          readOnly: true
+          $ref: '#/components/schemas/ContactMoment'
         bronorganisatie:
           title: Bronorganisatie
           description: 'Het RSIN van de Niet-natuurlijk persoon zijnde de organisatie die de klantinteractie heeft gecreeerd. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef'
@@ -1480,6 +1467,14 @@ components:
         afwijkendOnderwerp:
           type: string
           maxLength: 2555
+        klantcontactmomenten:
+          type: array
+          items:
+            $ref: '#/components/schemas/KlantContactMoment'
+        primaireVraag:
+          type: string
+        primaireVraagWeergave:
+          type: string
         todo:
           x-context: schema.conduction.nl/todo
           type: string
@@ -1740,19 +1735,9 @@ components:
           minLength: 1
           readOnly: true
         contactmoment:
-          title: Contactmoment
-          description: URL-referentie naar het CONTACTMOMENT.
-          type: string
-          format: uri
-          maxLength: 1000
-          minLength: 1
+          $ref: '#/components/schemas/ContactMoment'
         klant:
-          title: Klant
-          description: URL-referentie naar de KLANT.
-          type: string
-          format: uri
-          maxLength: 1000
-          minLength: 1
+          x-context: schema.org/customer
         rol:
           title: Rol
           description: 'De rol van de KLANT in het CONTACTMOMENT. Indien de KLANT zowel gesprekspartner als belanghebbende is, dan worden er twee KLANTCONTACTMOMENTen aangemaakt.'
@@ -1780,12 +1765,7 @@ components:
         contactmoment:
           $ref: '#/components/schemas/ContactMoment'
         object:
-          title: Object
-          description: URL-referentie naar het gerelateerde OBJECT (in een andere API).
-          type: string
-          format: uri
-          maxLength: 1000
-          minLength: 1
+          x-context: schema.conduction.nl/zaak
         objectType:
           type: string
           title: Objecttype
@@ -1799,3 +1779,4 @@ components:
         - contactmoment
         - object
         - objectType
+      x-context: schema.conduction.nl/objectcontactmoment
