@@ -1,6 +1,6 @@
 openapi: 3.0.0
 x-stoplight:
-  id: c8izqgpjaja0t
+  id: ryw7iu4g2t8te
 info:
   title: Contactmomenten API
   description: |
@@ -31,8 +31,6 @@ info:
     **Main resource**
 
     `contactmoment`
-
-
 
     **Kenmerken**
 
@@ -1389,9 +1387,22 @@ components:
           minLength: 1
           readOnly: true
         vorigContactmoment:
-          $ref: '#/components/schemas/ContactMoment'
+          title: Vorig contactmoment
+          description: URL-referentie naar het vorige CONTACTMOMENT.
+          type: string
+          format: uri
+          maxLength: 1000
+          minLength: 1
+          nullable: true
         volgendContactmoment:
-          $ref: '#/components/schemas/ContactMoment'
+          title: Volgend contactmoment
+          description: URL-referentie naar het volgende CONTACTMOMENT.
+          type: string
+          format: uri
+          maxLength: 1000
+          minLength: 1
+          nullable: true
+          readOnly: true
         bronorganisatie:
           title: Bronorganisatie
           description: 'Het RSIN van de Niet-natuurlijk persoon zijnde de organisatie die de klantinteractie heeft gecreeerd. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef'
@@ -1469,17 +1480,10 @@ components:
         afwijkendOnderwerp:
           type: string
           maxLength: 2555
-        klantcontactmomenten:
-          type: array
-          items:
-            $ref: '#/components/schemas/KlantContactMoment'
-        primaireVraag:
-          type: string
-        primaireVraagWeergave:
-          type: string
         todo:
+          x-context: schema.conduction.nl/todo
           type: string
-          description: ref to agendaservice todo
+          description: uri to agendaservice todo
       required:
         - bronorganisatie
     Fout:
@@ -1726,7 +1730,6 @@ components:
           $ref: '#/components/schemas/Wijzigingen'
     KlantContactMoment:
       type: object
-      x-context: schema.conduction.nl/klantcontactmoment
       properties:
         url:
           title: Url
@@ -1737,9 +1740,13 @@ components:
           minLength: 1
           readOnly: true
         contactmoment:
-          $ref: '#/components/schemas/ContactMoment'
+          title: Contactmoment
+          description: URL-referentie naar het CONTACTMOMENT.
+          type: string
+          format: uri
+          maxLength: 1000
+          minLength: 1
         klant:
-          x-context: schema.org/customer
           title: Klant
           description: URL-referentie naar de KLANT.
           type: string
@@ -1773,7 +1780,6 @@ components:
         contactmoment:
           $ref: '#/components/schemas/ContactMoment'
         object:
-          x-context: schema.conduction.nl/zaak
           title: Object
           description: URL-referentie naar het gerelateerde OBJECT (in een andere API).
           type: string
@@ -1793,4 +1799,3 @@ components:
         - contactmoment
         - object
         - objectType
-      x-context: schema.conduction.nl/objectcontactmoment
